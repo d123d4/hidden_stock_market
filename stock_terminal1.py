@@ -31,8 +31,12 @@ class Worker(threading.Thread):
                 res = sorted([self.result_queue.get() for i in range(self.result_queue.qsize())], key=lambda s: s[0], reverse=True)
                 res.insert(0, ('0', u'名称     股价	实时涨幅	昨日价格'))
                 print ('***** start *****')
+                fileOperate = open('temp1.txt', 'w')
+                res.pop(0)
                 for obj in res:
+                    fileOperate.write(obj[1]+'\n')
                     print (obj[1])
+                fileOperate.close()
                 print ('***** end *****\n')
             self.work_queue.task_done()
 

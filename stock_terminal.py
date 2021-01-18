@@ -31,8 +31,12 @@ class Worker(threading.Thread):
                 res = sorted([self.result_queue.get() for i in range(self.result_queue.qsize())], key=lambda s: s[0], reverse=True)
                 res.insert(0, ('0', u'名称     股价'))
                 print ('***** start *****')
+                fileOperate = open('temp.txt', 'w')
                 for obj in res:
+                    fileOperate.write(obj[1]+'\n')
                     print (obj[1])
+
+                fileOperate.close()
                 print ('***** end *****\n')
             self.work_queue.task_done()
 
@@ -80,6 +84,7 @@ class Stock(object):
 
 
 if __name__ == '__main__':
+
     parser = OptionParser(description="Query the stock's value.", usage="%prog [-c] [-s] [-t]", version="%prog 1.0")
     parser.add_option('-c', '--stock-code', dest='codes',
                       help="the stock's code that you want to query.")
