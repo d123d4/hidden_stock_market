@@ -33,3 +33,8 @@
     通过Queue实现线程池
     requests请求接口
     optparse实现命令行参数处理
+
+
+补充说明:
+----
+    使用PYQT5增加迷你盯盘软件,运行Main使用,运行前需要先启动stock_terminal.py
